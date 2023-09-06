@@ -6,7 +6,8 @@ export interface IUser extends Document {
         salt: string;
         sessionToken: string;
     };
-    isAdmin: boolean;
+    isAdmin?: boolean;
+    isAdminRoot?: boolean;
     avatar?: string;
     createdAt: Date;
     expiryDate: Date;

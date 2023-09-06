@@ -1,0 +1,25 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: end;
+
+  //align-items: center;
+  .hearder{
+    display: flex;
+    flex-direction: row;
+    .btnLogin{
+      padding-right: 20px;
+      a:link{
+        text-decoration: none;
+      }
+    }
+    .btnRegister{
+      a:link{
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+

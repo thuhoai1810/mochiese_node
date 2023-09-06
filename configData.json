@@ -1,0 +1,9 @@
+[
+  {
+    "email": "admin.mochichinese@gmail.com",
+    "password": "12345678",
+    "username" : "Mochichinese",
+    "isAdmin": true,
+    "isAdminRoot": true
+  }
+]

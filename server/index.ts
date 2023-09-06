@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 
 import router from './routes';
 import connectDB from "./database/databaseConection";
+import {initializeAdmin} from "./controller/admin";
 
 const app = express();
 dotenv.config();
@@ -23,10 +24,15 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 const PORT = process.env.PORT ?? 80;
 
-server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/`);
-});
-
+initializeAdmin()
+    .then(() => {
+        server.listen(PORT, () => {
+            console.log(`Server running on http://localhost:${PORT}/`);
+        });
+    })
+    .catch(error => {
+        console.error('Data initialization error:', error);
+    });
 connectDB().then()
 
 app.use('/', router());

@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { getUserByEmail, createUser } from '../models/user';
-import { authentication, random } from '../helpers/helpers';
+import {authentication, random, renderId} from '../helpers/helpers';
 
 export const login = async (req: express.Request, res: express.Response) => {
     try {
@@ -40,8 +40,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
 export const register = async (req: express.Request, res: express.Response) => {
     try {
-        console.log('e',req.body )
-        const { email, password, username, isAdmin, expiryDate, } = req.body;
+        const { email, password, username, isAdmin, expiryDate } = req.body;
 
         if (!email || !password || !username) {
             return res.sendStatus(400);
@@ -57,6 +56,7 @@ export const register = async (req: express.Request, res: express.Response) => {
             email,
             username,
             isAdmin,
+            password,
             expiryDate,
             authentication: {
                 salt,
@@ -64,10 +64,19 @@ export const register = async (req: express.Request, res: express.Response) => {
             },
 
         });
-        console.log('newUser', newUser)
         return res.status(200).json(newUser).end();
     } catch (error) {
         console.log(error);
         return res.sendStatus(400).json({ error: 'Registration failed' });
+    }
+}
+
+export const changePassword = async (req: express.Request, res: express.Response) =>{
+    try {
+        const { email, password } = req.body;
+
+    }catch(error){
+        console.log(error);
+        return res.sendStatus(400).json({ error: 'Change password failed' });
     }
 }
