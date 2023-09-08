@@ -18,18 +18,18 @@ export const apiInstance = axios.create({
 
 // setup interceptor for request
 apiInstance.interceptors.request.use(
-  function (config) {
+  function (config: any) {
     // Do something before request is sent
     // config.headers.Authorization = `Bearer ${getCookie("token")}`;
     return config;
   },
-  function (error) {
+  function (error: any) {
     // Do something with request error
     return Promise.reject(error);
   }
 );
 
-export const axiosGetMethod = async (endpoint, config) => {
+export const axiosGetMethod = async (endpoint: string, config: { headers?: { Authorization: string; }; }) => {
   try {
     const finalParam = config || {};
     const res = await apiInstance.get(endpoint, { ...finalParam });
@@ -40,7 +40,7 @@ export const axiosGetMethod = async (endpoint, config) => {
   }
 };
 
-export const axiosPostMethod = async (endpoint, body, customInfo) => {
+export const axiosPostMethod = async (endpoint: string, body: any, customInfo: {} | undefined) => {
   try {
     const finalParam = customInfo || {};
     const res = await apiInstance.post(endpoint, body, {

@@ -73,7 +73,7 @@ export const register = async (req: express.Request, res: express.Response) => {
 
 export const changePassword = async (req: express.Request, res: express.Response) =>{
     try {
-        const { email, password } = req.body;
+        const { password } = req.body;
 
     }catch(error){
         console.log(error);
